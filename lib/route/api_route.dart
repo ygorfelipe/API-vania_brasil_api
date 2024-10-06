@@ -1,3 +1,4 @@
+import 'package:state_cities_api/app/http/controllers/location_controller.dart';
 import 'package:vania/vania.dart';
 
 class ApiRoute implements Route {
@@ -5,9 +6,13 @@ class ApiRoute implements Route {
   void register() {
     /// Base RoutePrefix
     Router.basePrefix('api');
+
     Router.get('/on', () {
       return Response.json({'message': 'API online'});
     });
+
+    Router.get('/states', LocationController().getStates);
+    Router.get('/cities/{states}', LocationController().getCitiesByState);
 
     // Router.get("/home", homeController.index);
 
